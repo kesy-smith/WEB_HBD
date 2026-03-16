@@ -30,6 +30,7 @@ class BirthdayWishApp {
     init() {
         this.cacheElements();
         this.setupEventListeners();
+        this.setupMobileMenu();
         this.loadHistoryFromStorage();
         this.setupInitialAnimations();
         
@@ -68,7 +69,20 @@ class BirthdayWishApp {
             toast: document.getElementById('toast'),
             
             // Modal AR
-            arModal: document.getElementById('arModal')
+            arModal: document.getElementById('arModal'),
+            
+            // Menu Mobile
+            hamburger: document.getElementById('hamb'),
+            mobileMenu: document.getElementById('mobileMenu'),
+            nameInputMobile: document.getElementById('name-input-mobile'),
+            ageInputMobile: document.getElementById('age-input-mobile'),
+            themeSelectMobile: document.getElementById('theme-select-mobile'),
+            wishOutputMobile: document.getElementById('wishOutputMobile'),
+            generateBtnMobile: document.getElementById('generateBtn-mobile'),
+            copyBtnMobile: document.getElementById('copyBtn-mobile'),
+            whatsappBtnMobile: document.getElementById('whatsappBtn-mobile'),
+            clearHistoryBtnMobile: document.getElementById('clearHistoryBtn-mobile'),
+            historyListMobile: document.getElementById('historyList-mobile')
         };
 
         // Valider les éléments critiques
@@ -139,6 +153,65 @@ class BirthdayWishApp {
                 }
             });
         }
+    }
+
+    /**
+     * Configure le menu mobile (hamburger)
+     */
+    setupMobileMenu() {
+        if (!this.elements.hamburger || !this.elements.mobileMenu) return;
+
+        // Hamburger button click - toggle menu
+        this.elements.hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleMenu();
+        });
+
+        // Close menu when clicking on the menu backdrop
+        this.elements.mobileMenu.addEventListener('click', (e) => {
+            if (e.target === this.elements.mobileMenu) {
+                this.closeMenu();
+            }
+        });
+
+        // Close menu when emotion is selected
+        this.elements.emotionBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Delay slightly to allow the main handler to execute first
+                setTimeout(() => this.closeMenu(), 100);
+            });
+        });
+
+        // Close button in menu header
+        const closeBtn = this.elements.mobileMenu.querySelector('.menu-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => this.closeMenu());
+        }
+
+        // Close menu when clicking outside it (on main content)
+        document.addEventListener('click', (e) => {
+            if (!this.elements.mobileMenu.contains(e.target) && 
+                !this.elements.hamburger.contains(e.target) &&
+                this.elements.mobileMenu.classList.contains('active')) {
+                this.closeMenu();
+            }
+        });
+    }
+
+    /**
+     * Bascule l'état du menu mobile
+     */
+    toggleMenu() {
+        this.elements.hamburger.classList.toggle('active');
+        this.elements.mobileMenu.classList.toggle('active');
+    }
+
+    /**
+     * Ferme le menu mobile
+     */
+    closeMenu() {
+        this.elements.hamburger.classList.remove('active');
+        this.elements.mobileMenu.classList.remove('active');
     }
 
     /**
