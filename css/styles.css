@@ -1260,15 +1260,12 @@ html, body {
         gap: var(--spacing-md);
         padding: var(--spacing-md);
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-        overflow: visible;
-        flex: none;
+        grid-template-rows: auto 1fr auto;
     }
 
     .control-panel {
         padding: var(--spacing-md);
-        max-height: none;
-        overflow-y: visible;
+        overflow-y: auto;
     }
 
     .emotion-buttons {
@@ -1353,22 +1350,16 @@ html, body {
         gap: var(--spacing-sm);
         padding: var(--spacing-sm);
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-        overflow: visible;
-        flex: none;
-        min-height: auto;
+        grid-template-rows: auto 1fr auto;
     }
 
     .control-panel {
         padding: var(--spacing-sm);
-        max-height: none;
-        min-height: auto;
-        overflow-y: visible;
+        overflow-y: auto;
     }
 
     .history-list {
-        max-height: none;
-        overflow-y: visible;
+        overflow-y: auto;
     }
 
     .panel-header h2 {
@@ -1400,14 +1391,14 @@ html, body {
 
     .center-display {
         padding: var(--spacing-sm);
-        flex: 1;
-        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
     }
 
     .hologram-frame {
         padding: var(--spacing-sm);
-        flex: none;
-        min-height: auto;
+        flex: 1;
     }
 
     .wish-title {
