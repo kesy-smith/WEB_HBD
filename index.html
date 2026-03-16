@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next-Gen Birthday Wish Generator | Génération Futuriste</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Librairies externes -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Canvas pour les particules Three.js -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Conteneur principal -->
+    <div class="main-container">
+        <!-- Grille de fond dégradée -->
+        <div class="background-grid"></div>
+        
+        <!-- Effets de lumière ambiante -->
+        <div class="ambient-light top-left"></div>
+        <div class="ambient-light bottom-right"></div>
+
+        <!-- En-tête -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <span class="neon-text">NEXT-GEN</span>
+                    <br/>
+                    <span class="subtitle-text">Birthday Wish Generator</span>
+                </h1>
+                <p class="tagline">Traversez les dimensions émotionnelles pour créer des souhaits inoubliables</p>
+            </div>
+        </header>
+
+        <!-- Conteneur principal de l'interface -->
+        <div class="interface-wrapper">
+            <!-- Panneau de contrôle gauche -->
+            <section class="control-panel left-panel scroll-reveal">
+                <div class="panel-header">
+                    <h2>Sélection Émotionnelle</h2>
+                    <div class="panel-indicator"></div>
+                </div>
+
+                <div class="emotion-selector">
+                    <p class="emotion-label">Vibration Émotionnelle:</p>
+                    
+                    <div class="emotion-buttons">
+                        <button class="emotion-btn" data-emotion="nostalgique">
+                            <span class="emotion-icon">🌙</span>
+                            <span>Nostalgique</span>
+                            <span class="emotion-desc">Souvenirs & Nostalgie</span>
+                        </button>
+                        
+                        <button class="emotion-btn" data-emotion="explosive">
+                            <span class="emotion-icon">⚡</span>
+                            <span>Explosive</span>
+                            <span class="emotion-desc">Énergie & Passion</span>
+                        </button>
+                        
+                        <button class="emotion-btn" data-emotion="galactique">
+                            <span class="emotion-icon">🌌</span>
+                            <span>Galactique</span>
+                            <span class="emotion-desc">Aventure & Infini</span>
+                        </button>
+
+                        <button class="emotion-btn" data-emotion="mystique">
+                            <span class="emotion-icon">✨</span>
+                            <span>Mystique</span>
+                            <span class="emotion-desc">Magie & Mystère</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Paramètres supplémentaires -->
+                <div class="parameters-section">
+                    <div class="param-group">
+                        <label for="name-input" class="param-label">Nom du Destinataire:</label>
+                        <input type="text" id="name-input" class="param-input" placeholder="Entrez un nom...">
+                    </div>
+
+                    <div class="param-group">
+                        <label for="age-input" class="param-label">Âge (optionnel):</label>
+                        <input type="number" id="age-input" class="param-input" placeholder="Ex: 30" min="1" max="150">
+                    </div>
+
+                    <div class="param-group">
+                        <label for="theme-select" class="param-label">Thème:</label>
+                        <select id="theme-select" class="param-input">
+                            <option value="general">Général</option>
+                            <option value="professional">Professionnel</option>
+                            <option value="romantic">Romantique</option>
+                            <option value="humorous">Humoristique</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Zone centrale - Écran holographique -->
+            <section class="center-display scroll-reveal">
+                <div class="hologram-frame">
+                    <div class="hologram-content">
+                        <!-- Zone d'affichage du souhait -->
+                        <div class="wish-display-area">
+                            <div class="wish-container">
+                                <h3 class="wish-title">Souhait Généré</h3>
+                                <div class="wish-output" id="wishOutput">
+                                    <p class="placeholder-text">Sélectionnez une vibration émotionnelle et générez un souhait...</p>
+                                </div>
+                                <div class="wish-glow"></div>
+                            </div>
+                        </div>
+
+                        <!-- Boutons d'action -->
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="generateBtn">
+                                <span class="btn-icon">🎯</span>
+                                <span>Générer Souhait</span>
+                            </button>
+                            
+                            <button class="btn btn-secondary" id="arPortalBtn">
+                                <span class="btn-icon">🌀</span>
+                                <span>Projeter en AR</span>
+                            </button>
+
+                            <button class="btn btn-tertiary" id="copyBtn">
+                                <span class="btn-icon">📋</span>
+                                <span>Copier</span>
+                            </button>
+
+                            <button class="btn btn-whatsapp" id="whatsappBtn">
+                                <span class="btn-icon">💬</span>
+                                <span>Envoyer sur WhatsApp</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indicateur de statut émotionnel -->
+                <div class="status-bar">
+                    <div class="status-item">
+                        <span class="status-label">Vibration Active:</span>
+                        <span class="status-value" id="activeEmotion">--</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Énergie de Cohésion:</span>
+                        <div class="energy-bar">
+                            <div class="energy-fill" id="energyFill"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panneau droit - Historique -->
+            <section class="control-panel right-panel scroll-reveal">
+                <div class="panel-header">
+                    <h2>Historique</h2>
+                    <div class="panel-indicator"></div>
+                </div>
+
+                <div class="history-container">
+                    <div class="history-list" id="historyList">
+                        <p class="history-placeholder">Les souhaits générés apparaîtront ici...</p>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <button class="btn-small" id="clearHistoryBtn">
+                        <span>Effacer Historique</span>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal de Portail AR -->
+    <div class="ar-modal" id="arModal">
+        <div class="ar-modal-content">
+            <button class="modal-close" id="closeArModal">&times;</button>
+            
+            <div class="ar-portal">
+                <div class="portal-rings">
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                </div>
+                
+                <div class="portal-center">
+                    <div class="portal-glow"></div>
+                    <div class="portal-text">
+                        <p>PROJECTION AR</p>
+                        <p>EN COURS...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ar-instructions">
+                <h3>Instructions AR</h3>
+                <ul>
+                    <li>Pointez vers un espace vide</li>
+                    <li>Appuyez pour placer le souhait dans l'espace</li>
+                    <li>Utilisez les gestes pour redimensionner et faire pivoter</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast-notification" id="toast"></div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                <p>Next-Gen Birthday Wish Generator</p>
+                <span class="footer-separator">✨</span>
+                <p>Créé par <strong>Eddy KESY</strong></p>
+            </div>
+            <div class="footer-year">
+                <p>&copy; 2026 - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/wishes-generator.js"></script>
+    <script src="js/three-particles.js"></script>
+    <script src="js/ar-simulator.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/scroll-effects.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

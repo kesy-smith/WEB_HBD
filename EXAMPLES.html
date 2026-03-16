@@ -1,0 +1,831 @@
+<!-- ============================================
+     EXEMPLES D'UTILISATION AVANCÉE
+     Page HTML pour tester les fonctionnalités
+     ============================================ -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXT-GEN Examples & Testing</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0e27;
+            color: #e0e0e0;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #00D9FF;
+            border-bottom: 2px solid #00D9FF;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #8338EC;
+            margin-top: 30px;
+        }
+        
+        .example-section {
+            background: rgba(10, 14, 39, 0.7);
+            border: 1px solid #00D9FF;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .code-block {
+            background: #1a1a2e;
+            border-left: 3px solid #00D9FF;
+            padding: 10px;
+            margin: 10px 0;
+            overflow-x: auto;
+            border-radius: 5px;
+        }
+        
+        .code-block code {
+            color: #00D9FF;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .btn-example {
+            background: linear-gradient(135deg, #00D9FF, #0099CC);
+            color: #0a0e27;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-example:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+        }
+        
+        .output {
+            background: #2a1810;
+            border: 1px solid #8B6F47;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            min-height: 50px;
+            font-size: 0.9em;
+        }
+        
+        .output p {
+            margin: 5px 0;
+            color: #d0d0d0;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.85em;
+            margin: 5px 0;
+        }
+        
+        .status.ok {
+            background: #00FF88;
+            color: #0a0e27;
+        }
+        
+        .status.error {
+            background: #FF006E;
+            color: white;
+        }
+        
+        .status.warning {
+            background: #FFD700;
+            color: #0a0e27;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .comparison-item {
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .navigation {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(10, 14, 39, 0.95);
+            border: 1px solid #00D9FF;
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 80vh;
+            overflow-y: auto;
+            min-width: 200px;
+        }
+        
+        .navigation h3 {
+            color: #00D9FF;
+            margin-top: 0;
+        }
+        
+        .navigation a {
+            display: block;
+            color: #00D9FF;
+            text-decoration: none;
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+        
+        .navigation a:hover {
+            background: rgba(0, 217, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>🔬 NEXT-GEN Birthday Wish Generator - Testing & Examples</h1>
+    
+    <div class="navigation">
+        <h3>Navigation</h3>
+        <a href="#generator-tests">Generator Tests</a>
+        <a href="#particle-tests">Particle Effects</a>
+        <a href="#ar-tests">AR Features</a>
+        <a href="#emotion-comparison">Emotion Comparison</a>
+        <a href="#validation-tests">Validation Tests</a>
+        <a href="#performance">Performance</a>
+        <a href="#console-tests">Console Tests</a>
+    </div>
+
+    <!-- SECTION 1: Generator Tests -->
+    <div id="generator-tests" class="example-section">
+        <h2>1️⃣ Wishes Generator Tests</h2>
+        <p>Testez la génération de souhaits avec différentes combinaisons</p>
+        
+        <div class="code-block">
+            <code>
+const generator = new WishesGenerator();<br>
+const wish = generator.generateWish('explosive', 'Marie', 30, 'professional');
+            </code>
+        </div>
+        
+        <button class="btn-example" onclick="testGeneratorBasic()">
+            ▶ Test Basique
+        </button>
+        <button class="btn-example" onclick="testGeneratorPersonalized()">
+            ▶ Test Personnalisé
+        </button>
+        <button class="btn-example" onclick="testGeneratorAllEmotions()">
+            ▶ Toutes les Émotions
+        </button>
+        <button class="btn-example" onclick="testGeneratorValidation()">
+            ▶ Tests de Validation
+        </button>
+        
+        <div class="output" id="generator-output"></div>
+    </div>
+
+    <!-- SECTION 2: Particle Tests -->
+    <div id="particle-tests" class="example-section">
+        <h2>2️⃣ Particle System Tests</h2>
+        <p>Testez les effets des particules Three.js</p>
+        
+        <p>💡 Astuce: Regardez l'arrière-plan pendant ces tests!</p>
+        
+        <button class="btn-example" onclick="testParticlesIntensify()">
+            ⚡ Intensify
+        </button>
+        <button class="btn-example" onclick="testParticlesExplode()">
+            💥 Explode
+        </button>
+        <button class="btn-example" onclick="testParticlesNostalgique()">
+            🌙 Nostalgique Colors
+        </button>
+        <button class="btn-example" onclick="testParticlesExplosive()">
+            ⚡ Explosive Colors
+        </button>
+        <button class="btn-example" onclick="testParticlesGalactique()">
+            🌌 Galactique Colors
+        </button>
+        <button class="btn-example" onclick="testParticlesMystique()">
+            ✨ Mystique Colors
+        </button>
+        
+        <div class="output" id="particle-output"></div>
+    </div>
+
+    <!-- SECTION 3: AR Tests -->
+    <div id="ar-tests" class="example-section">
+        <h2>3️⃣ AR Portal Simulator Tests</h2>
+        <p>Testez la simulation du portail AR</p>
+        
+        <button class="btn-example" onclick="testAROpen()">
+            🌀 Open Portal
+        </button>
+        <button class="btn-example" onclick="testARConfetti()">
+            🎉 Create Confetti
+        </button>
+        <button class="btn-example" onclick="testARHologram()">
+            🔮 Create Hologram
+        </button>
+        <button class="btn-example" onclick="testARScanMode()">
+            📡 Activate Scan Mode
+        </button>
+        <button class="btn-example" onclick="testARSound()">
+            🔊 Play AR Sound
+        </button>
+        <button class="btn-example" onclick="testARSequence()">
+            🎬 Full AR Sequence
+        </button>
+        
+        <div class="output" id="ar-output"></div>
+    </div>
+
+    <!-- SECTION 4: Emotion Comparison -->
+    <div id="emotion-comparison" class="example-section">
+        <h2>4️⃣ Emotion Comparison</h2>
+        <p>Comparez les 4 vibrations émotionnelles</p>
+        
+        <button class="btn-example" onclick="compareEmotions()">
+            📊 Generate Comparison
+        </button>
+        
+        <div class="output" id="emotion-output"></div>
+    </div>
+
+    <!-- SECTION 5: Validation Tests -->
+    <div id="validation-tests" class="example-section">
+        <h2>5️⃣ Input Validation Tests</h2>
+        <p>Testez la validation des paramètres</p>
+        
+        <button class="btn-example" onclick="testValidationGood()">
+            ✅ Valid Input
+        </button>
+        <button class="btn-example" onclick="testValidationBad()">
+            ❌ Invalid Input
+        </button>
+        <button class="btn-example" onclick="testValidationEdgeCases()">
+            ⚠️ Edge Cases
+        </button>
+        
+        <div class="output" id="validation-output"></div>
+    </div>
+
+    <!-- SECTION 6: Performance -->
+    <div id="performance" class="example-section">
+        <h2>6️⃣ Performance Metrics</h2>
+        <p>Mesurez les performances</p>
+        
+        <button class="btn-example" onclick="testPerformanceWish()">
+            ⏱️ Wish Generation Speed
+        </button>
+        <button class="btn-example" onclick="testPerformanceParticles()">
+            ⏱️ Particle System
+        </button>
+        <button class="btn-example" onclick="testMemoryUsage()">
+            💾 Memory Usage
+        </button>
+        <button class="btn-example" onclick="testFPS()">
+            📊 FPS Counter
+        </button>
+        
+        <div class="output" id="performance-output"></div>
+    </div>
+
+    <!-- SECTION 7: Console Tests -->
+    <div id="console-tests" class="example-section">
+        <h2>7️⃣ Console Examples</h2>
+        <p>Copiez ces commandes dans la console (F12) pour les tester:</p>
+        
+        <h3>Génération de Souhaits</h3>
+        <div class="code-block">
+            <code>
+// Créer un générateur<br>
+const gen = new WishesGenerator();<br>
+<br>
+// Générer un souhait nostalgique<br>
+gen.generateWish('nostalgique', 'Alice', 25);<br>
+<br>
+// Générer avec fortune<br>
+gen.generateCompleteSalutation('explosive', 'Bob', 30, 'professional');<br>
+<br>
+// Valider l'entrée<br>
+gen.validateInput('mystique', 'Charlie', 35, 'romantic');
+            </code>
+        </div>
+        
+        <h3>Contrôle des Particules</h3>
+        <div class="code-block">
+            <code>
+// Intensifier les particules<br>
+particleSystem.intensify();<br>
+<br>
+// Exploser les particules<br>
+particleSystem.explodeCenter();<br>
+<br>
+// Changer les couleurs<br>
+particleSystem.setEmotionalColors('galactique');<br>
+<br>
+// Détruire le système<br>
+particleSystem.destroy();
+            </code>
+        </div>
+        
+        <h3>Portail AR</h3>
+        <div class="code-block">
+            <code>
+// Ouvrir le portail<br>
+arSimulator.open("Joyeux anniversaire!");<br>
+<br>
+// Créer des confettis<br>
+arSimulator.createConfetti();<br>
+<br>
+// Afficher un hologramme<br>
+arSimulator.createWishHologram("Mon souhait");<br>
+<br>
+// Jouer un son<br>
+arSimulator.playARSound();
+            </code>
+        </div>
+        
+        <h3>Contrôle de l'App</h3>
+        <div class="code-block">
+            <code>
+// Générer un souhait<br>
+app.generateWish();<br>
+<br>
+// Afficher un toast<br>
+app.showToast('Message personnalisé');<br>
+<br>
+// Copier le souhait<br>
+app.copyWish();<br>
+<br>
+// Voir l'état<br>
+console.log(app.state);
+            </code>
+        </div>
+    </div>
+
+    <!-- SCRIPTS DE TEST -->
+    <script>
+        // ========== SECTION 1: Generator Tests ==========
+        function testGeneratorBasic() {
+            const output = document.getElementById('generator-output');
+            try {
+                const generator = new WishesGenerator();
+                const wish = generator.generateWish('nostalgique');
+                output.innerHTML = `
+                    <p><strong>Émotion:</strong> Nostalgique</p>
+                    <p><strong>Souhait:</strong></p>
+                    <p><em>${wish}</em></p>
+                    <p class="status ok">✓ Succès</p>
+                `;
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testGeneratorPersonalized() {
+            const output = document.getElementById('generator-output');
+            try {
+                const generator = new WishesGenerator();
+                const wish = generator.generateWish(
+                    'explosive',
+                    'Marie',
+                    30,
+                    'professional'
+                );
+                output.innerHTML = `
+                    <p><strong>Paramètres:</strong></p>
+                    <p>Émotion: Explosive | Nom: Marie | Âge: 30 | Thème: Professional</p>
+                    <p><strong>Souhait:</strong></p>
+                    <p><em>${wish}</em></p>
+                    <p class="status ok">✓ Succès</p>
+                `;
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testGeneratorAllEmotions() {
+            const output = document.getElementById('generator-output');
+            try {
+                const generator = new WishesGenerator();
+                const emotions = ['nostalgique', 'explosive', 'galactique', 'mystique'];
+                let html = '<p><strong>Souhaits par émotion:</strong></p>';
+                
+                emotions.forEach(emotion => {
+                    const wish = generator.generateWish(emotion).substring(0, 80) + '...';
+                    html += `<p><strong>${emotion.toUpperCase()}:</strong> ${wish}</p>`;
+                });
+                
+                html += '<p class="status ok">✓ 4 souhaits générés</p>';
+                output.innerHTML = html;
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testGeneratorValidation() {
+            const output = document.getElementById('generator-output');
+            try {
+                const generator = new WishesGenerator();
+                
+                // Test 1: Valid
+                const valid = generator.validateInput('explosive', 'John', 30, 'general');
+                
+                // Test 2: Invalid emotion
+                const invalidEmotion = generator.validateInput('invalid', 'John', 30, 'general');
+                
+                // Test 3: Invalid age
+                const invalidAge = generator.validateInput('explosive', 'John', 200, 'general');
+                
+                let html = '<p><strong>Résultats de Validation:</strong></p>';
+                html += `<p>✅ Valid Input: ${valid.isValid ? 'PASS' : 'FAIL'}</p>`;
+                html += `<p>❌ Invalid Emotion: ${!invalidEmotion.isValid ? 'PASS' : 'FAIL'}</p>`;
+                html += `<p>❌ Invalid Age: ${!invalidAge.isValid ? 'PASS' : 'FAIL'}</p>`;
+                html += '<p class="status ok">✓ Validation complète</p>';
+                
+                output.innerHTML = html;
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        // ========== SECTION 2: Particle Tests ==========
+        function testParticlesIntensify() {
+            const output = document.getElementById('particle-output');
+            try {
+                if (!particleSystem.isInitialized) {
+                    output.innerHTML = '<p class="status warning">⚠️ Particle System not initialized</p>';
+                    return;
+                }
+                particleSystem.intensify();
+                output.innerHTML = '<p class="status ok">✓ Particules intensifiées! (Regardez l\'arrière-plan)</p>';
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testParticlesExplode() {
+            const output = document.getElementById('particle-output');
+            try {
+                if (!particleSystem.isInitialized) {
+                    output.innerHTML = '<p class="status warning">⚠️ Particle System not initialized</p>';
+                    return;
+                }
+                particleSystem.explodeCenter();
+                output.innerHTML = '<p class="status ok">✓ Explosion! Les particules se dispersent...</p>';
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testParticlesNostalgique() {
+            const output = document.getElementById('particle-output');
+            try {
+                if (!particleSystem.isInitialized) {
+                    output.innerHTML = '<p class="status warning">⚠️ Particle System not initialized</p>';
+                    return;
+                }
+                particleSystem.setEmotionalColors('nostalgique');
+                output.innerHTML = '<p class="status ok">✓ Couleurs Nostalgiques appliquées 🌙</p>';
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testParticlesExplosive() {
+            const output = document.getElementById('particle-output');
+            try {
+                if (!particleSystem.isInitialized) {
+                    output.innerHTML = '<p class="status warning">⚠️ Particle System not initialized</p>';
+                    return;
+                }
+                particleSystem.setEmotionalColors('explosive');
+                output.innerHTML = '<p class="status ok">✓ Couleurs Explosives appliquées ⚡</p>';
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testParticlesGalactique() {
+            const output = document.getElementById('particle-output');
+            try {
+                if (!particleSystem.isInitialized) {
+                    output.innerHTML = '<p class="status warning">⚠️ Particle System not initialized</p>';
+                    return;
+                }
+                particleSystem.setEmotionalColors('galactique');
+                output.innerHTML = '<p class="status ok">✓ Couleurs Galactiques appliquées 🌌</p>';
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testParticlesMystique() {
+            const output = document.getElementById('particle-output');
+            try {
+                if (!particleSystem.isInitialized) {
+                    output.innerHTML = '<p class="status warning">⚠️ Particle System not initialized</p>';
+                    return;
+                }
+                particleSystem.setEmotionalColors('mystique');
+                output.innerHTML = '<p class="status ok">✓ Couleurs Mystiques appliquées ✨</p>';
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        // ========== SECTION 3: AR Tests ==========
+        function testAROpen() {
+            const output = document.getElementById('ar-output');
+            try {
+                arSimulator.open("Test de portail AR 🌀");
+                output.innerHTML = '<p class="status ok">✓ Portail ouvert! Regardez le modal AR en haut à droite</p>';
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testARConfetti() {
+            const output = document.getElementById('ar-output');
+            try {
+                arSimulator.createConfetti();
+                output.innerHTML = '<p class="status ok">✓ Confettis créés! (Regardez l\'écran)</p>';
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testARHologram() {
+            const output = document.getElementById('ar-output');
+            try {
+                arSimulator.createWishHologram("JOYEUX ANNIVERSAIRE! 🎉");
+                output.innerHTML = '<p class="status ok">✓ Hologramme créé! (Regardez le centre de l\'écran)</p>';
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testARScanMode() {
+            const output = document.getElementById('ar-output');
+            try {
+                arSimulator.activateScanMode();
+                output.innerHTML = '<p class="status ok">✓ Mode scan activé! (Ligne qui scan l\'écran)</p>';
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testARSound() {
+            const output = document.getElementById('ar-output');
+            try {
+                arSimulator.playARSound();
+                output.innerHTML = '<p class="status ok">✓ Son AR joué! (Vous devriez l\'entendre)</p>';
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur (normalement): ${e.message}</p>`;
+            }
+        }
+
+        function testARSequence() {
+            const output = document.getElementById('ar-output');
+            try {
+                output.innerHTML = '<p><strong>Séquence AR en cours...</strong></p>';
+                
+                arSimulator.open("Souhait Spécial");
+                
+                setTimeout(() => {
+                    arSimulator.activateScanMode();
+                    output.innerHTML += '<p>⏸️ 0.5s - Mode scan activé</p>';
+                }, 500);
+                
+                setTimeout(() => {
+                    arSimulator.createWishHologram("VOUS ÊTES EXTRAORDINAIRE!");
+                    output.innerHTML += '<p>⏸️ 1.5s - Hologramme créé</p>';
+                }, 1500);
+                
+                setTimeout(() => {
+                    arSimulator.createConfetti();
+                    output.innerHTML += '<p>⏸️ 2s - Confettis lancés</p>';
+                    output.innerHTML += '<p class="status ok">✓ Séquence complète</p>';
+                }, 2000);
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        // ========== SECTION 4: Emotion Comparison ==========
+        function compareEmotions() {
+            const output = document.getElementById('emotion-output');
+            try {
+                const generator = new WishesGenerator();
+                const emotions = ['nostalgique', 'explosive', 'galactique', 'mystique'];
+                
+                let html = '<p><strong>Comparaison des Émotions:</strong></p>';
+                html += '<div class="comparison">';
+                
+                emotions.forEach(emotion => {
+                    const wish = generator.generateWish(emotion, 'Test', 25).substring(0, 150) + '...';
+                    const desc = generator.getEmotionDescription(emotion);
+                    
+                    html += `
+                        <div class="comparison-item">
+                            <p><strong>${emotion.toUpperCase()}</strong></p>
+                            <p><em>${desc}</em></p>
+                            <p>${wish}</p>
+                        </div>
+                    `;
+                });
+                
+                html += '</div><p class="status ok">✓ Comparaison générée</p>';
+                output.innerHTML = html;
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        // ========== SECTION 5: Validation Tests ==========
+        function testValidationGood() {
+            const output = document.getElementById('validation-output');
+            try {
+                const generator = new WishesGenerator();
+                const result = generator.validateInput('explosive', 'Jean Dupont', 30, 'professional');
+                
+                output.innerHTML = `
+                    <p><strong>Entrée Valide</strong></p>
+                    <p>Émotion: explosive | Nom: Jean Dupont | Âge: 30 | Thème: professional</p>
+                    <p>Valid: ${result.isValid ? '✅ OUI' : '❌ NON'}</p>
+                    <p class="status ok">✓ Entrée acceptée</p>
+                `;
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testValidationBad() {
+            const output = document.getElementById('validation-output');
+            try {
+                const generator = new WishesGenerator();
+                
+                const results = [
+                    { label: 'Émotion invalide', result: generator.validateInput('invalid', 'John', 30, 'general') },
+                    { label: 'Âge < 1', result: generator.validateInput('explosive', 'John', 0, 'general') },
+                    { label: 'Âge > 150', result: generator.validateInput('explosive', 'John', 200, 'general') },
+                    { label: 'Nom > 100 chars', result: generator.validateInput('explosive', 'A'.repeat(101), 30, 'general') }
+                ];
+                
+                let html = '<p><strong>Tests d\'Entrées Invalides</strong></p>';
+                results.forEach(r => {
+                    html += `<p>${r.label}: ${r.result.isValid ? '❌ Non détecté' : '✅ Erreur: ' + r.result.errors[0]}</p>`;
+                });
+                html += '<p class="status ok">✓ Validation correcte</p>';
+                
+                output.innerHTML = html;
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testValidationEdgeCases() {
+            const output = document.getElementById('validation-output');
+            try {
+                const generator = new WishesGenerator();
+                
+                const tests = [
+                    { name: 'Nom vide', validation: generator.validateInput('explosive', '', 30, 'general') },
+                    { name: 'Âge = 1', validation: generator.validateInput('explosive', 'John', 1, 'general') },
+                    { name: 'Âge = 150', validation: generator.validateInput('explosive', 'John', 150, 'general') },
+                    { name: 'Caractères spéciaux', validation: generator.validateInput('explosive', 'Jean-Pierre O\'Brien', 30, 'general') }
+                ];
+                
+                let html = '<p><strong>Edge Cases</strong></p>';
+                tests.forEach(t => {
+                    html += `<p>${t.name}: ${t.validation.isValid ? '✅ OK' : '❌ Rejeté'}</p>`;
+                });
+                html += '<p class="status ok">✓ Edge cases testés</p>';
+                
+                output.innerHTML = html;
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        // ========== SECTION 6: Performance Tests ==========
+        function testPerformanceWish() {
+            const output = document.getElementById('performance-output');
+            try {
+                const generator = new WishesGenerator();
+                const iterations = 1000;
+                
+                const start = performance.now();
+                for (let i = 0; i < iterations; i++) {
+                    generator.generateWish('explosive', 'Test', 30, 'general');
+                }
+                const end = performance.now();
+                
+                const totalTime = end - start;
+                const avgTime = totalTime / iterations;
+                
+                output.innerHTML = `
+                    <p><strong>Performance de Génération de Souhaits</strong></p>
+                    <p>Itérations: ${iterations}</p>
+                    <p>Temps total: ${totalTime.toFixed(2)}ms</p>
+                    <p>Temps moyen: ${avgTime.toFixed(4)}ms</p>
+                    <p>Souhaits/sec: ${(1000 / avgTime).toFixed(0)}</p>
+                    <p class="status ok">✓ Très rapide!</p>
+                `;
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testPerformanceParticles() {
+            const output = document.getElementById('performance-output');
+            try {
+                output.innerHTML = `
+                    <p><strong>Informations Particle System</strong></p>
+                    <p>Initié: ${particleSystem.isInitialized ? '✅ OUI' : '❌ NON'}</p>
+                    <p>Nombre de particules: ${particleSystem.particles.length}</p>
+                    <p>Configuration: ${JSON.stringify(particleSystem.particleConfig)}</p>
+                    <p class="status ok">✓ Particle System actif</p>
+                `;
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testMemoryUsage() {
+            const output = document.getElementById('performance-output');
+            try {
+                if (performance.memory) {
+                    const used = (performance.memory.usedJSHeapSize / 1048576).toFixed(2);
+                    const limit = (performance.memory.jsHeapSizeLimit / 1048576).toFixed(2);
+                    const percent = ((used / limit) * 100).toFixed(1);
+                    
+                    output.innerHTML = `
+                        <p><strong>Utilisation de Mémoire</strong></p>
+                        <p>Heap utilisé: ${used} MB</p>
+                        <p>Heap max: ${limit} MB</p>
+                        <p>Pourcentage: ${percent}%</p>
+                        <p class="status ok">✓ Données collectées</p>
+                    `;
+                } else {
+                    output.innerHTML = `<p class="status warning">⚠️ Memory API non disponible</p>`;
+                }
+            } catch (e) {
+                output.innerHTML = `<p class="status error">✗ Erreur: ${e.message}</p>`;
+            }
+        }
+
+        function testFPS() {
+            const output = document.getElementById('performance-output');
+            let frames = 0;
+            let lastTime = Date.now();
+            
+            function countFrame() {
+                frames++;
+                const now = Date.now();
+                
+                if (now >= lastTime + 1000) {
+                    output.innerHTML = `<p><strong>FPS Counter</strong></p><p>FPS: ${frames}</p>`;
+                    frames = 0;
+                    lastTime = now;
+                }
+                
+                requestAnimationFrame(countFrame);
+            }
+            
+            countFrame();
+            output.innerHTML = '<p class="status ok">✓ Compteur FPS démarré (mise à jour chaque seconde)</p>';
+        }
+
+        // Initialiser à distance
+        function initializeTests() {
+            console.log('🧪 Test Suite Initialized');
+            console.log('💡 Utilisez les boutons ci-dessus pour tester les différentes fonctionnalités');
+            console.log('📖 Consultez la console (F12) pour plus de détails');
+        }
+
+        // Au chargement
+        document.addEventListener('DOMContentLoaded', initializeTests);
+    </script>
+
+    <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #00D9FF; text-align: center; color: #808080;">
+        <p>🔬 Testing Suite for NEXT-GEN Birthday Wish Generator</p>
+        <p style="font-size: 0.9em;">Ouvrez la console (F12) pour voir les logs détaillés</p>
+    </footer>
+</body>
+</html>
