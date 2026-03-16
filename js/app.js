@@ -130,6 +130,15 @@ class BirthdayWishApp {
         if (this.elements.ageInput) {
             this.elements.ageInput.addEventListener('input', () => this.updateEnergyBar());
         }
+
+        // Cliquer sur la zone du souhait pour régénérer
+        if (this.elements.wishOutput) {
+            this.elements.wishOutput.addEventListener('click', () => {
+                if (this.state.currentWish) {
+                    this.generateWish();
+                }
+            });
+        }
     }
 
     /**
